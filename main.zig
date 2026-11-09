@@ -87,6 +87,11 @@ pub fn main(init: std.process.Init) void {
     }
     const average_sign: []const u8 = if (total < 0) "-" else "+";
     const average_magnitude: u128 = @intCast(if (total < 0) -total else total);
+    writer.print("Summe ({d} Tage): {s}{d} Zeilen\n", .{
+        days,
+        average_sign,
+        average_magnitude,
+    }) catch return;
     const divisor: u128 = @intCast(days);
     const average_hundredths_unrounded = average_magnitude * 100 / divisor;
     const remainder = average_magnitude * 100 % divisor;
